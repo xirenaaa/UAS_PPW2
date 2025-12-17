@@ -25,10 +25,10 @@
         new Chart(ctx1, {
             type: 'pie',
             data: {
-                labels: ["Male", "Female"],
+                labels: ["Laki-laki", "Perempuan"],
                 datasets: [{
                     label: 'Jumlah',
-                    data: [4644,4800],
+                    data: [{{ $maleCount }}, {{ $femaleCount }}],
                     backgroundColor: [
                         '#3b82f6',
                         '#ec4899'
@@ -54,20 +54,14 @@
         new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: [
-                    "Software Engineer",
-                    "Data Analyst",
-                    "Project Manager",
-                    "System Administrator",
-                    "UI/UX Designer"
-                ],
+                labels: {!! json_encode($pekerjaanLabels) !!},
                 datasets: [{
                     label: 'Jumlah Pegawai',
-                    data: [110, 95, 85, 75, 70],
+                    data: {!! json_encode($pekerjaanData) !!},
                     backgroundColor: '#C0392B',
                     borderColor: '#922B21',
                     borderWidth: 1,
-                    borderRadius: 4, // rounded bars
+                    borderRadius: 4,
                     barPercentage: 0.6,
                 }]
             },
