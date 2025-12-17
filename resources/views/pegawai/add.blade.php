@@ -54,11 +54,16 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Captcha</label>
                     <div class="flex items-center gap-3">
-                        <img src="{{ captcha_src('flat') }}" alt="captcha" id="captcha-image" class="h-12 rounded border">
-                        <button type="button" onclick="document.getElementById('captcha-image').src = '{{ captcha_src('flat') }}' + '?' + Math.random()" class="text-sm text-blue-600 hover:underline cursor-pointer">Refresh</button>
+                        <img src="{{ captcha_src() }}" alt="captcha" id="captcha-img" class="h-12 rounded border">
+                        <button type="button" id="refresh-captcha" class="text-sm text-blue-600 hover:underline cursor-pointer">Refresh</button>
                     </div>
                     <input type="text" name="captcha" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Masukkan captcha" required>
                 </div>
+                <script>
+                    document.getElementById('refresh-captcha').addEventListener('click', function() {
+                        document.getElementById('captcha-img').src = '/captcha/default?' + Math.random();
+                    });
+                </script>
                 <div class="flex justify-end gap-2">
                     <a href="{{ route('pegawai.index') }}" class="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Kembali</a>
                     <button type="reset" class="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">Reset</button>
